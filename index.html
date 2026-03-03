@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan Ascent — Professional Workout Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main App -->
+    <div id="mainApp" class="main-app">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo-small">TITAN ASCENT</h1>
+                <div class="game-stats">
+                    <div class="game-stat level-badge" id="levelBadge" title="Your level">Lv.1</div>
+                    <div class="xp-bar-wrap" title="XP to next level">
+                        <div class="xp-bar" id="xpBar"></div>
+                    </div>
+                    <div class="game-stat streak-badge" id="streakBadge" title="Consecutive workout days">🔥 0</div>
+                    <div class="game-stat workouts-count" id="statWorkouts">0 workouts</div>
+                    <button class="achievements-btn" id="achievementsBtn" title="Achievements">🏆</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="day-selector-section">
+                <h2 class="section-title">Select Day</h2>
+                <div class="day-tabs" id="dayTabs"></div>
+            </section>
+
+            <section class="workout-section">
+                <div class="workout-header">
+                    <h2 class="day-title" id="dayTitle">Monday</h2>
+                    <button class="add-exercise-btn" id="addExerciseBtn">+ Add Exercise</button>
+                </div>
+                <div class="workout-progress" id="workoutProgress">
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar-fill" id="progressBarFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0 / 0 sets</span>
+                </div>
+                <div class="rest-timer-bar" id="restTimerBar">
+                    <span class="rest-label">Rest:</span>
+                    <button class="rest-btn" data-sec="30">30s</button>
+                    <button class="rest-btn" data-sec="60">60s</button>
+                    <button class="rest-btn" data-sec="90">90s</button>
+                    <button class="rest-btn" data-sec="120">2m</button>
+                    <span class="rest-countdown" id="restCountdown"></span>
+                </div>
+                <div class="exercise-list" id="exerciseList"></div>
+                <button class="log-workout-btn" id="logWorkoutBtn">Log This Workout</button>
+            </section>
+
+            <section class="progress-section">
+                <div class="section-header">
+                    <h2 class="section-title">Workout History</h2>
+                    <button class="clear-history-btn" id="clearHistoryBtn" title="Clear all history">Clear All</button>
+                </div>
+                <div class="history-container">
+                    <div class="history-list" id="historyList"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Exercise Picker Modal -->
+    <div id="exerciseModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Exercise</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="exercise-picker">
+                <input type="text" id="exerciseSearch" placeholder="Search exercises..." class="exercise-search">
+                <div class="exercise-categories" id="exerciseCategories"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workout Details Modal -->
+    <div id="workoutDetailsModal" class="modal hidden">
+        <div class="modal-content modal-details">
+            <div class="modal-header">
+                <h3 id="workoutDetailsTitle">Workout Details</h3>
+                <button class="modal-close" id="workoutDetailsClose">&times;</button>
+            </div>
+            <div class="workout-details-body" id="workoutDetailsBody">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievements Modal -->
+    <div id="achievementsModal" class="modal hidden">
+        <div class="modal-content modal-achievements">
+            <div class="modal-header">
+                <h3>🏆 Achievements</h3>
+                <button class="modal-close" id="achievementsClose">&times;</button>
+            </div>
+            <div class="achievements-body" id="achievementsBody"></div>
+        </div>
+    </div>
+
+    <!-- XP Popup (shown on set complete) -->
+    <div id="xpPopup" class="xp-popup hidden">+10 XP</div>
+
+    <!-- Confirm Delete Modal -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content modal-confirm">
+            <div class="confirm-body">
+                <p class="confirm-title" id="confirmTitle">Clear all workout history?</p>
+                <p class="confirm-message" id="confirmMessage">This action cannot be undone.</p>
+            </div>
+            <div class="confirm-actions">
+                <button class="btn-cancel" id="confirmCancel">Cancel</button>
+                <button class="btn-confirm" id="confirmDelete">Clear History</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="workout-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
